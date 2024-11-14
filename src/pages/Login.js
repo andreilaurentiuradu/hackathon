@@ -25,6 +25,10 @@ const Login = () => {
     setPassword(event.target.value);
   };
 
+  const toggleShowCamera = () => {
+    setShowCamera(false);
+  };
+
   async function loginUser() {
     setFormIsValid(false);
     let regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
@@ -77,6 +81,7 @@ const Login = () => {
       }
     }
   }
+
   return (
     <div className="main">
       <div className="top">
@@ -89,6 +94,7 @@ const Login = () => {
           <div className="welcome">
             <p className="welcome_text">Bine ai revenit!</p>
           </div>
+
           {showCamera && (
             <Webcam height={300} ref={webcamRef} className="welcome" />
           )}
@@ -132,6 +138,13 @@ const Login = () => {
                 onClick={loginUser}
               >
                 {!facialRec ? 'Login' : 'Login facial'}
+              </button>
+            </div>
+          )}
+          {showCamera && (
+            <div className="button_login">
+              <button className="button" onClick={toggleShowCamera}>
+                Inapoi
               </button>
             </div>
           )}
